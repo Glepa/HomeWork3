@@ -85,16 +85,17 @@ namespace HomeWork3
             
             #region Работа с матрицей
             int row = 3;
-            int col = 2;
+            int col = 3;
             int n = 4;
             int[,] matrix1 = new int[row, col];
             int[,] matrix2 = new int[col, row];
+            int[,] matrixResulte = new int[row, col];
             Console.WriteLine("\n   Матрица 1:\n");
             for (int i = 0; i < row; i++)
             {
                 for (int j = 0; j < col; j++)
                 {
-                    matrix1[i,j] = rand.Next(1, 10);
+                    matrix1[i,j] = rand.Next(1, 3);
                     Console.Write($"{matrix1[i,j],4}");
                 }
                 Console.WriteLine();
@@ -104,7 +105,7 @@ namespace HomeWork3
             {
                 for (int j = 0; j < row; j++)
                 {
-                    matrix2[i, j] = rand.Next(1, 10);
+                    matrix2[i, j] = rand.Next(1, 3);
                     Console.Write($"{matrix2[i, j],4}");
                 }
                 Console.WriteLine();
@@ -115,47 +116,49 @@ namespace HomeWork3
             {
                 for (int j = 0; j < col; j++)
                 {
-                    Console.Write($"{matrix1[i, j]*n,4}");
+                    matrixResulte[i, j] = matrix1[i, j] * n;
+                    Console.Write($"{matrixResulte[i, j],4}");
                 }
                 Console.WriteLine();
             }
+            
             Console.WriteLine($"\n  Сложение матрицы 1 с матрицей 2:\n");
-            if(row==col)
+            
             for (int i = 0; i < row; i++)
             {
                 for (int j = 0; j < col; j++)
                 {
-
-                    Console.Write($"{matrix1[i, j] + matrix2[i, j],4}");
+                    matrixResulte[i, j] = matrix1[i, j] + matrix2[i, j];
+                    Console.Write($"{matrixResulte[i, j],4}");
                 }
                 Console.WriteLine();
             }
-            else
-                Console.WriteLine("Сложить матрицы не возможно, т.к. они разной размерности!\n");
+            
             Console.WriteLine($"\n  Вычитание матрицы 2 из матрицы 1:\n");
-            if (row == col)
+
                 for (int i = 0; i < row; i++)
                 {
                     for (int j = 0; j < col; j++)
                     {
-
-                        Console.Write($"{matrix1[i, j] - matrix2[i, j],4}");
+                        matrixResulte[i, j] = matrix1[i, j] - matrix2[i, j];
+                        Console.Write($"{matrixResulte[i, j],4}");
                     }
                     Console.WriteLine();
                 }
-            else
-                Console.WriteLine("Вычетать матрицы не возможно, т.к. они разной размерности!\n");
+           
             Console.WriteLine($"\n  Умножение матрицы 1 на матрицу 2:\n");
+
+            Array.Clear(matrixResulte, 0, matrixResulte.Length);
+
             for (int i = 0; i < row; i++)
             {
                 for (int j = 0; j <row; j++)
                 {
-                int num = 0;
                     for (int k = 0; k < col; k++)
                     {
-                        num += matrix1[i, k] * matrix2[k, j];
+                        matrixResulte[i,j] += matrix1[i, k] * matrix2[k, j];
                     }
-                        Console.Write($"{num,4} ");
+                        Console.Write($"{matrixResulte[i, j],4} ");
                 }
                     Console.WriteLine();
             }
